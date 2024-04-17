@@ -1,0 +1,125 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-users-table
+      author: bakhmetIvan
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: first_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: last_name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: phone_number
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: birthday
+                  type: date
+              - column:
+                  name: is_deleted
+                  type: boolean
+                  constraints:
+                    nullable: false
+              - column:
+                  name: role_id
+                  type: bigint
+                  constraints:
+                    nullable: true
+              - column:
+                  name: delivery_address
+                  type: varchar(300)
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: users
+            baseColumnNames: role_id
+            referencedTableName: roles
+            referencedColumnNames: id
+            constraintName: fk_user_role
+  - changeSet:
+      id: insert-admins-and-users-in-user-table
+      author: bakhmetIvan
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: Admin
+              - column:
+                  name: last_name
+                  value: Adminov
+              - column:
+                  name: email
+                  value: admin@gmail.com
+              - column:
+                  name: phone_number
+                  value: "+380748492400"
+              - column:
+                  name: birthday
+                  value: '2000-01-01'
+              - column:
+                  name: is_deleted
+                  value: 0
+              - column:
+                  name: role_id
+                  value: 2
+              - column:
+                  name: password
+                  value: $2a$10$9Fd9FpY7GfNKAFpAQLHD8eipLZlA/5fHnJ4/rAYwWEBNenvEa3s5u
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: Bob
+              - column:
+                  name: last_name
+                  value: Bobov
+              - column:
+                  name: email
+                  value: bob@gmail.com
+              - column:
+                  name: phone_number
+                  value: "+380573849233"
+              - column:
+                  name: birthday
+                  value: '2000-01-01'
+              - column:
+                  name: is_deleted
+                  value: 0
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: delivery_address
+                  value: "Kharkiv, Kruskoe, 8/9"
+              - column:
+                  name: password
+                  value: $2a$10$MAwqltC.JT6VwX88LF/u1OcYBzGlL.fchovWXhBD9lq0ajb0xRUEi

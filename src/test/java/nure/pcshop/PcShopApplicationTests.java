@@ -1,4 +1,4 @@
-package com.example.pcshop;
+package nure.pcshop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
