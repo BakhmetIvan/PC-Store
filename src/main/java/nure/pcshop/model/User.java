@@ -11,7 +11,9 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -23,7 +25,9 @@ import java.util.Date;
 import java.util.HashSet;
 
 @Entity
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Table(name = "users")
 @SQLDelete(sql = "UPDATE users SET is_deleted = TRUE WHERE id =?")
 @SQLRestriction(value = "is_deleted = FALSE")

@@ -2,7 +2,6 @@ package nure.pcshop.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.ToString;
 import nure.pcshop.validation.FieldMatch;
@@ -15,12 +14,15 @@ import org.hibernate.validator.constraints.Length;
                 message = "The password fields don't match")
 })
 public class UserRegistrationDto {
-    @NotNull
+    @NotBlank
+    @Length(max = 255)
     private String firstName;
-    @NotNull
+    @NotBlank
+    @Length(max = 255)
     private String lastName;
     @NotBlank
     @Email
+    @Length(max = 255)
     private String email;
     @NotBlank
     @Length(min = 7, max = 15)
