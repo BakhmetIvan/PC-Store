@@ -1,0 +1,31 @@
+.profile-menu {
+    width: 330px;
+    background-color: #fff;
+    padding: 20px 26px 50px;
+}
+.profile-menu__content {
+    width: 100%;
+}
+.profile-menu__list {
+    list-style: none;
+}
+.profile-menu__item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid #BFBFBF;
+    cursor: pointer;
+}
+.profile-menu__item.active{
+    color:#FFAA2B;
+}
+.profile-menu__item-img-icon{    
+    height: 20px;
+    width: 24px;
+    color: #BFBFBF;
+}
+.profile-menu__item-title {
+    font-size: 16px;
+    font-weight: 500;
+}
