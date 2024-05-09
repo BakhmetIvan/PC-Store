@@ -30,7 +30,7 @@ function App() {
       <Product/>
       </div>
       <Footer/>
-      <h1>Hola amigos</h1>
+      <h1>Hola amigops</h1>
       <Promotion/>
       <ProductsCategory title="Ноутбуки"/>
       <ProductsCategory title="Монітори"/>
