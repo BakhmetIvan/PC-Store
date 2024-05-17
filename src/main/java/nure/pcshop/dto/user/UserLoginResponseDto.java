@@ -1,4 +1,4 @@
-package nure.pcshop.dto;
+package nure.pcshop.dto.user;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package nure.pcshop.dto;
+package nure.pcshop.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

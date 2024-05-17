@@ -1,10 +1,10 @@
 package nure.pcshop.service.user.impl;
 
 import lombok.RequiredArgsConstructor;
-import nure.pcshop.dto.UserRegistrationDto;
-import nure.pcshop.dto.UserResponseDto;
+import nure.pcshop.dto.user.UserRegistrationDto;
+import nure.pcshop.dto.user.UserResponseDto;
 import nure.pcshop.exception.RegistrationException;
-import nure.pcshop.mapper.UserMapper;
+import nure.pcshop.mapper.user.UserMapper;
 import nure.pcshop.model.Role;
 import nure.pcshop.model.User;
 import nure.pcshop.repository.role.RoleRepository;

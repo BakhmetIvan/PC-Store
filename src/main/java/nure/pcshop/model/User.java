@@ -29,7 +29,7 @@ import java.util.HashSet;
 @Setter
 @RequiredArgsConstructor
 @Table(name = "users")
-@SQLDelete(sql = "UPDATE users SET is_deleted = TRUE WHERE id =?")
+@SQLDelete(sql = "UPDATE users SET is_deleted = TRUE WHERE id = ?")
 @SQLRestriction(value = "is_deleted = FALSE")
 public class User implements UserDetails {
     @Id
