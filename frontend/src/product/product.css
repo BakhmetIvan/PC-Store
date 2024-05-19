@@ -1,0 +1,129 @@
+.product {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 24px 22px 16px;
+    max-width: 270px;
+}
+.product__content {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.product__image {
+    display: flex;
+}
+.product__name {
+    font-size: 14px;
+    text-align: center;
+    margin: 12px 0;
+}
+.product__review {
+    display: flex;
+    align-items: center;
+}
+.product__rating {
+    list-style: none;
+    display: flex;
+    margin-right: 23px;
+}
+.rating__star{
+    color: #D3D3D3;
+}
+.star-yellow{
+    color: #FFAA2B;
+}
+.product__comments {
+    display: flex;
+    align-items: center;
+}
+.product__comments-icon {
+    margin-right: 3px;
+    display: flex;
+}
+.product__comments-amount {
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.product__aviability {
+    font-size: 13px;
+    margin: 12px 0;
+}
+.product__aviability-true{
+    color: #35CD00;
+}
+/* .product__price {
+
+} */
+.product__price-old{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 3px;
+}
+.product__price-old_price{
+    color: #999999;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: line-through;
+}
+.product__price-discount{
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 5px;
+    background-color: rgba(255, 214, 110, 0.82);
+    display: inline-block;
+    border-radius: 10px;
+}
+.product__price-new {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+.product__price-new span{
+    font-size: 16px;
+}
+.product__cart-button{
+    padding: 10px 21px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.cart-shopping{
+    width: 24px;
+    height: 20px;
+}
+.orange{
+    background-color: #FFAA2B;
+}  
+
+.product__options {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    right: 0;
+    top: 0;
+}
+.product__option {
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    background-color: #D3D3D3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.product__option-yellow{
+    background-color: #FFAA2B;
+}
+.product__favourite {
+    height: 22px;
+}
+.product__scale {
+    width: 24px;
+    height: 19px;
+}

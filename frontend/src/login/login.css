@@ -1,0 +1,62 @@
+.login__block{
+    background-color: #fff;
+    display: inline-block;
+    border-radius: 15px;
+    position: relative;
+}
+
+.logreg__content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px;
+}
+.switcher{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 52px;
+    margin-bottom: 40px;
+}
+.switcher__option{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #d9d9d9;
+    font-size: 20px;
+    cursor: pointer;
+}
+.switcher__option-active{
+    background-color: #FFAA2B;
+}
+.logreg__form{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.form__input{
+    height: 38px;
+    width: 460px;
+    border-radius: 7px;
+    border: 1px solid #000;
+    background-color: #F9F9F9;
+    color: #646464;
+    font-size: 16px;
+    padding: 10px;
+}
+.logreg__button{
+    background-color: #FFAA2B;
+    font-size: 20px;
+    padding: 16px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.logreg__close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}

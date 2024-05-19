@@ -1,0 +1,45 @@
+.my-order {
+    background-color: #fff;
+    border: 1px solid #BFBFBF;
+    padding: 20px 29px;
+    font-size: 14px;
+    border-radius: 12px;
+}
+.my-order__content {
+    display: flex;
+    align-items: center;
+}
+.my-order__id {
+    margin-right: 54px;
+}
+.my-order__type {
+    font-weight: 600;
+}
+.my-order__type--done{
+    color: #32C200;
+}
+.my-order__img{
+    display: flex;
+    margin: 0 93px 0 151px;
+}
+.my-order__img img{
+    width: 44px;
+    height: 36px;
+}
+.my-order__price {
+    font-size: 16px;
+    font-weight: 600;
+}
+.my-order__date {
+    font-weight: 400;
+    margin: 0 52px 0 174px;
+}
+.my-order__arrow svg{
+    display: flex;
+    cursor: pointer;
+    width: 21px;
+    height: 21px;
+}
+.my-order__arrow--up {
+    transform: rotate(180deg);
+}
