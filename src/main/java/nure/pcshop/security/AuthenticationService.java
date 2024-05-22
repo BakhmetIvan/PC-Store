@@ -23,7 +23,9 @@ public class AuthenticationService {
                 new UsernamePasswordAuthenticationToken(requestDto.getEmail(), requestDto.getPassword())
         );
         UserDetails user = userRepository.findByEmail(authentication.getName())
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find user by email: " + requestDto.getEmail()));
+                .orElseThrow(() -> new UsernameNotFoundException(
+                        "Користувача с такою поштою не зареєстровано: " + requestDto.getEmail())
+                );
 
         String jwt = jwtUtil.generateToken(user);
         return new UserLoginResponseDto(jwt);
