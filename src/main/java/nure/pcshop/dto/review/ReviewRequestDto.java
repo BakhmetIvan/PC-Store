@@ -1,23 +1,15 @@
 package nure.pcshop.dto.review;
 
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
-import java.util.Date;
 
 @Data
 public class ReviewRequestDto {
     @NotNull
-    @Positive
-    private Long productId;
-    @NotNull
-    @Positive
-    private Long userId;
-    @NotNull
-    @Size(min = 1, max = 5)
+    @DecimalMin(value = "1.0", inclusive = false)
+    @DecimalMax(value = "5.0")
     private Float rating;
     private String comment;
-    @NotNull
-    private Date date;
 }

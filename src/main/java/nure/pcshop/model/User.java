@@ -49,8 +49,8 @@ public class User implements UserDetails {
     @ToString.Exclude
     private String password;
     private String deliveryAddress;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "role_id")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
     private Role role;
     @ToString.Exclude
     @Column(name = "is_deleted", nullable = false)

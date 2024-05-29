@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+        id: create-products-images-table
+        author: bakhmetIvan
+        changes:
+          - createTable:
+              tableName: products_images
+              columns:
+                - column:
+                    name: product_id
+                    type: BIGINT
+                    constraints:
+                      nullable: false
+                - column:
+                    name: image_id
+                    type: BIGINT
+                    constraints:
+                      nullable: false
+          - addForeignKeyConstraint:
+              baseColumnNames: product_id
+              baseTableName: products_images
+              constraintName: fk_products_images_product
+              referencedTableName: products
+              referencedColumnNames: id
+          - addForeignKeyConstraint:
+              baseColumnNames: image_id
+              baseTableName: products_images
+              constraintName: fk_products_images_image
+              referencedTableName: images
+              referencedColumnNames: id
+  - changeSet:
+      id: insert-images-RTX3090
+      author: bakhmetIvan
+      changes:
+        - insert:
+            tableName: products_images
+            columns:
+              - column:
+                  name: product_id
+                  value: 1
+              - column:
+                  name: image_id
+                  value: 1

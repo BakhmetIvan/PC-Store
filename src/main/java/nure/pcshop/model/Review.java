@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -33,5 +33,5 @@ public class Review {
     private Float rating;
     private String comment;
     @Column(nullable = false)
-    private Date date;
+    private LocalDateTime date;
 }

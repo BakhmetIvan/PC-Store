@@ -1,8 +1,8 @@
 package nure.pcshop.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -45,7 +45,8 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "image_id")
     )
     protected List<Image> images;
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     protected List<Review> reviews;
     @Column(nullable = false)
     protected BigDecimal price;
@@ -55,6 +56,8 @@ public class Product {
     protected int warrantyPeriod;
     protected Float averageRating;
     @Column(nullable = false)
-    protected boolean is_deleted = false;
+    protected int amount;
+    @ToString.Exclude
+    @Column(name = "is_deleted", nullable = false)
+    protected boolean isDeleted = false;
 }
-
