@@ -49,7 +49,7 @@ public class JwtUtil {
         try {
             return extractExpiration(token).before(new Date(System.currentTimeMillis()));
         } catch (ExpiredJwtException e) {
-            throw new RuntimeException("Token is already expired");
+            throw new RuntimeException("Токен вже не актуальний");
         }
     }
 

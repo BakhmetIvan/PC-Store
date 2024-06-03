@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000"})
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;

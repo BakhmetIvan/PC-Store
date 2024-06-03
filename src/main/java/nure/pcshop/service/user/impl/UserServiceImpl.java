@@ -23,10 +23,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponseDto register(UserRegistrationDto requestDto) throws RegistrationException {
         if (userRepository.findByEmail(requestDto.getEmail()).isPresent()) {
-            throw new RegistrationException("Email already registered: " + requestDto.getEmail());
+            throw new RegistrationException("Пошта вже зареєстрована: " + requestDto.getEmail());
         }
         if (userRepository.findByPhoneNumber(requestDto.getPhoneNumber()).isPresent()) {
-            throw new RegistrationException("Phone number already used: " + requestDto.getPhoneNumber());
+            throw new RegistrationException("Номер телефона вже використовується: " + requestDto.getPhoneNumber());
         }
         User user = userMapper.toModel(requestDto);
         user.setRole(roleRepository.findByName(Role.RoleName.ROLE_USER));

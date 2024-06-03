@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.App{
+  display: flex;
+  margin-top: 40px;
+  gap: 6px;
+}
+
+a{
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+
+.OOOOrders{
+  display: flex;
+  margin: 0 30px;
+  justify-content: space-between;
+  gap: 20px;
+}
