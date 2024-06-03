@@ -1,0 +1,122 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-laptops-table
+      author: bakhmetIvan
+      changes:
+        - createTable:
+            tableName: laptops
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT AUTO_INCREMENT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
+              - column:
+                  name: price
+                  type: DECIMAL(19, 2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: brand_name
+                  type: VARCHAR(255)
+              - column:
+                  name: country
+                  type: VARCHAR(255)
+              - column:
+                  name: warranty_period
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: average_rating
+                  type: FLOAT
+              - column:
+                  name: amount
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: diagonal
+                  type: FLOAT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: screen_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: refresh_rate
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: resolution
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: processor
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: operation_system
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ram_memory
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ram_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: ram_slot_amount
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: disk_type
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: storage
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gpu
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: gpu_memory
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: battery_capacity
+                  type: INT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: is_deleted
+                  type: BOOLEAN
+                  constraints:
+                    nullable: false

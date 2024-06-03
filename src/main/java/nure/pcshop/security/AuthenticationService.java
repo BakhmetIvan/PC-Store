@@ -1,8 +1,8 @@
 package nure.pcshop.security;
 
 import lombok.RequiredArgsConstructor;
-import nure.pcshop.dto.UserLoginRequestDto;
-import nure.pcshop.dto.UserLoginResponseDto;
+import nure.pcshop.dto.user.UserLoginRequestDto;
+import nure.pcshop.dto.user.UserLoginResponseDto;
 import nure.pcshop.repository.user.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

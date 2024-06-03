@@ -1,0 +1,386 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-reviews-for-laptops
+      author: bakhmetIvan
+      changes:
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 1
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: rating
+                  value: 5.0
+              - column:
+                  name: comment
+                  value: "Чудовий ноутбук, дуже задоволений!"
+              - column:
+                  name: date
+                  value: "2024-06-01 15:00:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 1
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: rating
+                  value: 4.5
+              - column:
+                  name: comment
+                  value: "Дуже гарний дисплей, але батарея могла б бути кращою."
+              - column:
+                  name: date
+                  value: "2024-06-02 14:30:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 1
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: rating
+                  value: 4.0
+              - column:
+                  name: comment
+                  value: "Ціна трохи завелика, але якість на висоті."
+              - column:
+                  name: date
+                  value: "2024-06-03 16:45:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 2
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: rating
+                  value: 5.0
+              - column:
+                  name: comment
+                  value: "Найкращий ноутбук для роботи!"
+              - column:
+                  name: date
+                  value: "2024-06-01 12:00:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 2
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: rating
+                  value: 4.7
+              - column:
+                  name: comment
+                  value: "Відмінний дизайн та продуктивність."
+              - column:
+                  name: date
+                  value: "2024-06-02 14:30:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 2
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: rating
+                  value: 4.2
+              - column:
+                  name: comment
+                  value: "Міг би бути трохи легший."
+              - column:
+                  name: date
+                  value: "2024-06-03 16:45:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 3
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: rating
+                  value: 4.8
+              - column:
+                  name: comment
+                  value: "Чудова якість збірки та дисплей."
+              - column:
+                  name: date
+                  value: "2024-06-01 12:00:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 3
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: rating
+                  value: 4.6
+              - column:
+                  name: comment
+                  value: "Дуже гарний екран, але трішки гучний."
+              - column:
+                  name: date
+                  value: "2024-06-02 14:30:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 3
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: rating
+                  value: 4.3
+              - column:
+                  name: comment
+                  value: "Прекрасний ноутбук для своєї ціни."
+              - column:
+                  name: date
+                  value: "2024-06-03 16:45:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 4
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: rating
+                  value: 5.0
+              - column:
+                  name: comment
+                  value: "Вражаючий ультрабук з чудовим дисплеєм."
+              - column:
+                  name: date
+                  value: "2024-06-01 12:00:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 4
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: rating
+                  value: 4.9
+              - column:
+                  name: comment
+                  value: "Найкращий вибір для професійної роботи."
+              - column:
+                  name: date
+                  value: "2024-06-02 14:30:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 4
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: rating
+                  value: 4.7
+              - column:
+                  name: comment
+                  value: "Дуже задоволений якістю."
+              - column:
+                  name: date
+                  value: "2024-06-03 16:45:00"
+
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 5
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: rating
+                  value: 5.0
+              - column:
+                  name: comment
+                  value: "Чудовий ноутбук для геймінгу!"
+              - column:
+                  name: date
+                  value: "2024-06-01 12:00:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 5
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: rating
+                  value: 4.8
+              - column:
+                  name: comment
+                  value: "Вражаюча продуктивність та дизайн."
+              - column:
+                  name: date
+                  value: "2024-06-02 14:30:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 5
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: rating
+                  value: 4.5
+              - column:
+                  name: comment
+                  value: "Трішки гучний вентилятор."
+              - column:
+                  name: date
+                  value: "2024-06-03 16:45:00"
+
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 6
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: rating
+                  value: 5.0
+              - column:
+                  name: comment
+                  value: "Відмінний ноутбук для творчих людей."
+              - column:
+                  name: date
+                  value: "2024-06-01 12:00:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 6
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: rating
+                  value: 4.9
+              - column:
+                  name: comment
+                  value: "Чудовий дисплей та продуктивність."
+              - column:
+                  name: date
+                  value: "2024-06-02 14:30:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 6
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: rating
+                  value: 4.8
+              - column:
+                  name: comment
+                  value: "Дуже задоволений покупкою."
+              - column:
+                  name: date
+                  value: "2024-06-03 16:45:00"
+
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 7
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: rating
+                  value: 5.0
+              - column:
+                  name: comment
+                  value: "Відмінна якість та дизайн."
+              - column:
+                  name: date
+                  value: "2024-06-01 12:00:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 7
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: rating
+                  value: 4.7
+              - column:
+                  name: comment
+                  value: "Дуже задоволений покупкою."
+              - column:
+                  name: date
+                  value: "2024-06-02 14:30:00"
+        - insert:
+            tableName: reviews
+            columns:
+              - column:
+                  name: laptop_id
+                  value: 7
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: rating
+                  value: 4.5
+              - column:
+                  name: comment
+                  value: "Відмінний вибір для професіоналів."
+              - column:
+                  name: date
+                  value: "2024-06-03 16:45:00"

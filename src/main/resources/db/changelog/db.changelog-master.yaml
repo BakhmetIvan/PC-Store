@@ -3,3 +3,17 @@ databaseChangeLog:
       file: db/changelog/changes/01-create-roles-table.yaml
   - include:
       file: db/changelog/changes/02-create-users-table.yaml
+  - include:
+      file: db/changelog/changes/03-create-laptops-table.yaml
+  - include:
+      file: db/changelog/changes/04-create-images-table.yaml
+  - include:
+      file: db/changelog/changes/05-create-reviews-table.yaml
+  - include:
+      file: db/changelog/changes/06-create-laptops-images-table.yaml
+  - include:
+      file: db/changelog/changes/07-insert-laptops.yaml
+  - include:
+      file: db/changelog/changes/08-insert-reviews-for-laptops.yaml
+  - include:
+      file: db/changelog/changes/09-insert-images.yaml

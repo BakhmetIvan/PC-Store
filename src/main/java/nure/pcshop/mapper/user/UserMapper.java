@@ -1,8 +1,8 @@
-package nure.pcshop.mapper;
+package nure.pcshop.mapper.user;
 
 import nure.pcshop.config.MapperConfig;
-import nure.pcshop.dto.UserRegistrationDto;
-import nure.pcshop.dto.UserResponseDto;
+import nure.pcshop.dto.user.UserRegistrationDto;
+import nure.pcshop.dto.user.UserResponseDto;
 import nure.pcshop.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
