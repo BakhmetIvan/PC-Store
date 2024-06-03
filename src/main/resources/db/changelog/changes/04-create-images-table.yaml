@@ -19,14 +19,8 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: path_to_image
-                  type: VARCHAR(255)
-                  constraints:
-                    nullable: false
-                    unique: true
-              - column:
-                  name: product_id
-                  type: BIGINT
+                  name: data
+                  type: LONGTEXT
                   constraints:
                     nullable: false
               - column:
@@ -34,28 +28,3 @@ databaseChangeLog:
                   type: BOOLEAN
                   constraints:
                     nullable: false
-        - addForeignKeyConstraint:
-            baseTableName: images
-            baseColumnNames: product_id
-            constraintName: fk_images_product
-            referencedTableName: products
-            referencedColumnNames: id
-  - changeSet:
-      id: insert-images-in-table
-      author: bakhmetIvan
-      changes:
-        - insert:
-            tableName: images
-            columns:
-              - column:
-                  name: title
-                  value: "RTX3090"
-              - column:
-                  name: path_to_image
-                  value: "C:\\Study\\ImagesForPcShop\\VideoCards\\2368027135.jpg"
-              - column:
-                  name: product_id
-                  value: 1
-              - column:
-                  name: is_deleted
-                  value: 0

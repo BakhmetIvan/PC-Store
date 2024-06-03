@@ -39,7 +39,7 @@ public class SecurityConfig {
                         auth -> auth
                                 .requestMatchers(
                                         "/auth/**",
-                                        "/video-cards/**",
+                                        "/laptops/**",
                                         "/swagger-ui/**")
                                 .permitAll()
                                 .anyRequest()

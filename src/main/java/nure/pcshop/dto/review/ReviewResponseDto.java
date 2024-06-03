@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 @Data
 public class ReviewResponseDto {
     private Long id;
-    private Long productId;
     private Long userId;
-    private String userName;
+    private String firstName;
+    private String lastName;
     private Float rating;
     private String comment;
     private LocalDateTime date;

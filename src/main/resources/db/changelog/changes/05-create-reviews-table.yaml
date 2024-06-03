@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: product_id
+                  name: laptop_id
                   type: BIGINT
                   constraints:
                     nullable: false
@@ -38,9 +38,9 @@ databaseChangeLog:
                     nullable: false
         - addForeignKeyConstraint:
             baseTableName: reviews
-            baseColumnNames: product_id
-            constraintName: fk_reviews_product
-            referencedTableName: products
+            baseColumnNames: laptop_id
+            constraintName: fk_reviews_laptops
+            referencedTableName: laptops
             referencedColumnNames: id
         - addForeignKeyConstraint:
             baseTableName: reviews

@@ -71,13 +71,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: first_name
-                  value: Admin
+                  value: "Admin"
               - column:
                   name: last_name
-                  value: Adminov
+                  value: "Adminov"
               - column:
                   name: email
-                  value: admin@gmail.com
+                  value: "admin@gmail.com"
               - column:
                   name: phone_number
                   value: "+380748492400"
@@ -98,13 +98,13 @@ databaseChangeLog:
             columns:
               - column:
                   name: first_name
-                  value: Bob
+                  value: "Bob"
               - column:
                   name: last_name
-                  value: Bobov
+                  value: "Bobov"
               - column:
                   name: email
-                  value: bob@gmail.com
+                  value: "bob@gmail.com"
               - column:
                   name: phone_number
                   value: "+380573849233"
@@ -123,3 +123,153 @@ databaseChangeLog:
               - column:
                   name: password
                   value: $2a$10$MAwqltC.JT6VwX88LF/u1OcYBzGlL.fchovWXhBD9lq0ajb0xRUEi
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Олександр"
+              - column:
+                  name: last_name
+                  value: "Іванов"
+              - column:
+                  name: email
+                  value: "alex.ivanov@example.com"
+              - column:
+                  name: phone_number
+                  value: "+380501234567"
+              - column:
+                  name: birthday
+                  value: "1985-05-15"
+              - column:
+                  name: is_deleted
+                  value: 0
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: delivery_address
+                  value: "Київ, вул. Шевченка, 10"
+              - column:
+                  name: password
+                  value: "$2a$10$lV6G1hdjY3wdJvPU48YT5ecyxhhRagjAr7ZnuiSY6webnq9te4CJG"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Марія"
+              - column:
+                  name: last_name
+                  value: "Петренко"
+              - column:
+                  name: email
+                  value: "maria.petrenko@example.com"
+              - column:
+                  name: phone_number
+                  value: "+380501234568"
+              - column:
+                  name: birthday
+                  value: "1990-08-25"
+              - column:
+                  name: is_deleted
+                  value: 0
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: delivery_address
+                  value: "Львів, вул. Франка, 20"
+              - column:
+                  name: password
+                  value: "$2a$10$QnK2gsrDsd3y7hZnj/fI.OX1wHVgy.Rk7KbJfNVXS6RmA/sJTLqse"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Іван"
+              - column:
+                  name: last_name
+                  value: "Сидоренко"
+              - column:
+                  name: email
+                  value: "ivan.sydorenko@example.com"
+              - column:
+                  name: phone_number
+                  value: "+380501234569"
+              - column:
+                  name: birthday
+                  value: "1987-03-10"
+              - column:
+                  name: is_deleted
+                  value: 0
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: delivery_address
+                  value: "Одеса, вул. Дерибасівська, 5"
+              - column:
+                  name: password
+                  value: "$2a$10$D4UcgSjJa4YtjfTLhPhZcupQML9Cafyjwj2GbeADxDIzSrUu1blL2"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Олена"
+              - column:
+                  name: last_name
+                  value: "Ковальчук"
+              - column:
+                  name: email
+                  value: "olena.kovalchuk@example.com"
+              - column:
+                  name: phone_number
+                  value: "+380501234570"
+              - column:
+                  name: birthday
+                  value: "1995-11-05"
+              - column:
+                  name: is_deleted
+                  value: 0
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: delivery_address
+                  value: "Харків, вул. Сумська, 12"
+              - column:
+                  name: password
+                  value: "$2a$10$vAmibv4/8CS2xiLX1gnB4uL3NH54tPxPZ7XqElU3OUkU89bXQeOaK"
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: first_name
+                  value: "Петро"
+              - column:
+                  name: last_name
+                  value: "Дмитренко"
+              - column:
+                  name: email
+                  value: "petro.dmytrenko@example.com"
+              - column:
+                  name: phone_number
+                  value: "+380501234571"
+              - column:
+                  name: birthday
+                  value: "1980-12-15"
+              - column:
+                  name: is_deleted
+                  value: 0
+              - column:
+                  name: role_id
+                  value: 1
+              - column:
+                  name: delivery_address
+                  value: "Запоріжжя, вул. Хортицька, 25"
+              - column:
+                  name: password
+                  value: "$2a$10$.kf1G.KMZzNIgQJlDV43nu2zn2fxHBtBZlN/msyfhigZjuB0cr2hS"

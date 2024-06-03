@@ -11,6 +11,7 @@ import nure.pcshop.exception.RegistrationException;
 import nure.pcshop.security.AuthenticationService;
 import nure.pcshop.service.user.UserService;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Validated
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/auth")
 public class AuthController {
     private final UserService userService;

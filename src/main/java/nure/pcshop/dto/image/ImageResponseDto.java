@@ -6,6 +6,5 @@ import lombok.Data;
 public class ImageResponseDto {
     private Long id;
     private String title;
-    private String contentType;
-    private byte[] imageData;
+    private String data;
 }

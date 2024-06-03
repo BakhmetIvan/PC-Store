@@ -5,9 +5,10 @@ import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.exception.EntityNotFoundException;
 import nure.pcshop.mapper.review.ReviewMapper;
-import nure.pcshop.model.Product;
+import nure.pcshop.model.Laptop;
 import nure.pcshop.model.Review;
-import nure.pcshop.repository.products.ProductRepository;
+import nure.pcshop.model.User;
+import nure.pcshop.repository.products.LaptopRepository;
 import nure.pcshop.repository.review.ReviewRepository;
 import nure.pcshop.repository.user.UserRepository;
 import nure.pcshop.service.review.ReviewService;
@@ -22,7 +23,7 @@ import java.util.List;
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final ReviewMapper reviewMapper;
-    private final ProductRepository productRepository;
+    private final LaptopRepository laptopRepository;
     private final UserRepository userRepository;
 
     @Transactional
@@ -33,31 +34,31 @@ public class ReviewServiceImpl implements ReviewService {
                 () -> new EntityNotFoundException("Такого користувача немає: " + userId)
         ));
         review.setDate(LocalDateTime.now());
-        Product product = productRepository.findById(productId).orElseThrow(
+        Laptop laptop = laptopRepository.findById(productId).orElseThrow(
                 () -> new EntityNotFoundException("Такого товару немає: " + productId)
         );
-        Float averageRating = product.getAverageRating();
+        Float averageRating = laptop.getAverageRating();
         if (averageRating == null) {
-            product.setAverageRating(review.getRating());
+            laptop.setAverageRating(review.getRating());
         } else {
-            product.setAverageRating((averageRating + review.getRating()) / 2);
+            laptop.setAverageRating((averageRating + review.getRating()) / 2);
         }
-        review.setProduct(product);
-        productRepository.save(product);
+        review.setLaptop(laptop);
+        laptopRepository.save(laptop);
         return reviewMapper.toDto(reviewRepository.save(review));
     }
 
     @Override
     public List<ReviewResponseDto> findAllReviewsByProductId(Long productId, Pageable pageable) {
-        return reviewRepository.findAllByProductId(productId, pageable).stream()
+        return reviewRepository.findAllByLaptopId(productId, pageable).stream()
                 .map(reviewMapper::toDto)
                 .toList();
     }
 
     @Override
-    public void delete(Long id) {
-        userRepository.findById(id).orElseThrow(
-                () -> new EntityNotFoundException("Такого відгуку немає: " + id)
+    public void delete(User user, Long id) {
+        reviewRepository.findReviewByUser(user).orElseThrow(
+                () -> new EntityNotFoundException("Користувач не може видаляти не свої відгуки")
         );
         reviewRepository.deleteById(id);
     }

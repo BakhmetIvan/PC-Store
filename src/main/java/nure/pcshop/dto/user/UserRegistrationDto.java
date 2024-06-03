@@ -11,28 +11,28 @@ import org.hibernate.validator.constraints.Length;
 @FieldMatch.List({
         @FieldMatch(first = "password",
                 second = "repeatPassword",
-                message = "The password fields don't match")
+                message = "Паролі не співпадають")
 })
 public class UserRegistrationDto {
-    @NotBlank
-    @Length(max = 255)
+    @NotBlank(message = "Рядок не може бути порожнім")
+    @Length(max = 255, message = "Ім'я не може бути більше ніж 255 символів")
     private String firstName;
-    @NotBlank
-    @Length(max = 255)
+    @NotBlank(message = "Рядок не може бути порожнім")
+    @Length(max = 255, message = "Прізвище не може бути більше ніж 255 символів")
     private String lastName;
-    @NotBlank
-    @Email
-    @Length(max = 255)
+    @NotBlank(message = "Рядок не може бути порожнім")
+    @Email(message = "Не правильна структура пошти")
+    @Length(max = 255, message = "Пошта не може бути більше ніж 255 символів")
     private String email;
-    @NotBlank
-    @Length(min = 7, max = 15)
+    @NotBlank(message = "Рядок не може бути порожнім")
+    @Length(min = 7, max = 15, message = "Номер телефону повинен бути від 7 до 17 цифр")
     private String phoneNumber;
-    @NotBlank
-    @Length(min = 8, max = 50)
+    @NotBlank(message = "Рядок не може бути порожнім")
+    @Length(min = 8, max = 50, message = "Пароль повинен бути від 8 до 50 символів")
     @ToString.Exclude
     private String password;
-    @NotBlank
-    @Length(min = 8, max = 50)
+    @NotBlank(message = "Рядок не може бути порожнім")
+    @Length(min = 8, max = 50, message = "Пароль повинен бути від 8 до 50 символів")
     @ToString.Exclude
     private String repeatPassword;
 }
