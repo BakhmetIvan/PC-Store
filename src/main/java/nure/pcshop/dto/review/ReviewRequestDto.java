@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class ReviewRequestDto {
     @NotNull
-    @DecimalMin(value = "1.0", inclusive = false)
-    @DecimalMax(value = "5.0")
-    private Float rating;
+    @DecimalMin(value = "1")
+    @DecimalMax(value = "5")
+    private int rating;
     private String comment;
 }

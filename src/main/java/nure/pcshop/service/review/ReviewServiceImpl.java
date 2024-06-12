@@ -1,22 +1,21 @@
-package nure.pcshop.service.review.impl;
+package nure.pcshop.service.review;
 
 import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.exception.EntityNotFoundException;
-import nure.pcshop.mapper.review.ReviewMapper;
+import nure.pcshop.mapper.ReviewMapper;
 import nure.pcshop.model.Laptop;
 import nure.pcshop.model.Review;
 import nure.pcshop.model.User;
 import nure.pcshop.repository.products.LaptopRepository;
-import nure.pcshop.repository.review.ReviewRepository;
-import nure.pcshop.repository.user.UserRepository;
-import nure.pcshop.service.review.ReviewService;
+import nure.pcshop.repository.ReviewRepository;
+import nure.pcshop.repository.UserRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -49,15 +48,14 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public List<ReviewResponseDto> findAllReviewsByProductId(Long productId, Pageable pageable) {
-        return reviewRepository.findAllByLaptopId(productId, pageable).stream()
-                .map(reviewMapper::toDto)
-                .toList();
+    public Page<ReviewResponseDto> findAllReviewsByProductId(Long productId, Pageable pageable) {
+        return reviewRepository.findAllByLaptopId(productId, pageable)
+                .map(reviewMapper::toDto);
     }
 
     @Override
     public void delete(User user, Long id) {
-        reviewRepository.findReviewByUser(user).orElseThrow(
+        reviewRepository.findReviewByUserAndId(user, id).orElseThrow(
                 () -> new EntityNotFoundException("Користувач не може видаляти не свої відгуки")
         );
         reviewRepository.deleteById(id);

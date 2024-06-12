@@ -2,6 +2,7 @@ package nure.pcshop.dto.review;
 
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Data
 public class ReviewResponseDto {
@@ -9,7 +10,7 @@ public class ReviewResponseDto {
     private Long userId;
     private String firstName;
     private String lastName;
-    private Float rating;
+    private int rating;
     private String comment;
     private LocalDateTime date;
 }

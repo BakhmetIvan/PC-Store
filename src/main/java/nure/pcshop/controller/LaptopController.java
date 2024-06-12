@@ -13,6 +13,7 @@ import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.model.User;
 import nure.pcshop.service.products.ProductService;
 import nure.pcshop.service.review.ReviewService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.List;
 
 @Validated
 @RestController
@@ -50,13 +50,13 @@ public class LaptopController {
 
     @GetMapping("/search")
     @Operation(summary = "Search laptops by name", description = "Finds laptops by their name")
-    public List<LaptopResponseDto> findByName(@RequestParam String name, @PageableDefault Pageable pageable) {
+    public Page<LaptopResponseDto> findByName(@RequestParam String name, @PageableDefault Pageable pageable) {
         return productService.findAllByName(name, pageable);
     }
 
     @GetMapping
     @Operation(summary = "Get all laptops", description = "Retrieves a paginated list of all laptops")
-    public List<LaptopResponseDto> findAll(@PageableDefault Pageable pageable) {
+    public Page<LaptopResponseDto> findAll(@PageableDefault Pageable pageable) {
         return productService.findAll(pageable);
     }
 
@@ -75,27 +75,27 @@ public class LaptopController {
         return productService.update(id, requestDto);
     }
 
-    @GetMapping("/characteristic/{id}")
+    @GetMapping("/{id}/characteristic")
     @Operation(summary = "Get laptop characteristics by ID", description = "Retrieves all characteristics of a laptop by its ID")
     public LaptopWithAllFieldsDto findCharacteristicById(@PathVariable @Positive Long id) {
         return productService.findCharacteristicById(id);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
-    @PostMapping("/{productId}/reviews")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PostMapping("/{id}/reviews")
     @Operation(summary = "Post a review", description = "Allows a user to post a review for a specific laptop")
-    public ReviewResponseDto postReview(@PathVariable @Positive Long productId,
+    public ReviewResponseDto postReview(@PathVariable @Positive Long id,
                                         Authentication authentication,
                                         @Valid @RequestBody ReviewRequestDto requestDto) {
         User user = (User) authentication.getPrincipal();
-        return reviewService.postReview(productId, user.getId(), requestDto);
+        return reviewService.postReview(id, user.getId(), requestDto);
     }
 
-    @GetMapping("/{productId}/reviews")
+    @GetMapping("/{id}/reviews")
     @Operation(summary = "Get all reviews for a laptop", description = "Retrieves a paginated list of all reviews for a specific laptop")
-    public List<ReviewResponseDto> findAllReviews(@PathVariable @Positive Long productId,
+    public Page<ReviewResponseDto> findAllReviews(@PathVariable @Positive Long id,
                                                   @PageableDefault Pageable pageable) {
-        return reviewService.findAllReviewsByProductId(productId, pageable);
+        return reviewService.findAllReviewsByProductId(id, pageable);
     }
 
     @PreAuthorize("hasRole('ROLE_USER')")

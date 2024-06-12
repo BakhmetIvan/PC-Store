@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: insert-shopping-carts
+      author: bakhmetIvan
+      changes:
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  value: 1
+              - column:
+                  name: total
+                  value: 0.0
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  value: 2
+              - column:
+                  name: total
+                  value: 0.0
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  value: 3
+              - column:
+                  name: total
+                  value: 0.0
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  value: 4
+              - column:
+                  name: total
+                  value: 0.0
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  value: 5
+              - column:
+                  name: total
+                  value: 0.0
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  value: 6
+              - column:
+                  name: total
+                  value: 0.0
+              - column:
+                  name: is_deleted
+                  valueBoolean: false
+        - insert:
+            tableName: shopping_carts
+            columns:
+              - column:
+                  name: user_id
+                  value: 7
+              - column:
+                  name: total
+                  value: 0.0
+              - column:
+                  name: is_deleted
+                  valueBoolean: false

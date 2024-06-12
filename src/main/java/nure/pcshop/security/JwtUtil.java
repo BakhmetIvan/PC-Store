@@ -49,7 +49,7 @@ public class JwtUtil {
         try {
             return extractExpiration(token).before(new Date(System.currentTimeMillis()));
         } catch (ExpiredJwtException e) {
-            throw new RuntimeException("Token is already expired");
+            throw new RuntimeException("Термін дії токена сплинув");
         }
     }
 
@@ -67,11 +67,15 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser()
-                .verifyWith(getSigningKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
+        try {
+            return Jwts.parser()
+                    .verifyWith(getSigningKey())
+                    .build()
+                    .parseSignedClaims(token)
+                    .getPayload();
+        } catch (ExpiredJwtException e) {
+            throw e;
+        }
     }
 
     private SecretKey getSigningKey() {
