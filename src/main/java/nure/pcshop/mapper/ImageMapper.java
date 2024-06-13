@@ -1,4 +1,4 @@
-package nure.pcshop.mapper.image;
+package nure.pcshop.mapper;
 
 import nure.pcshop.config.MapperConfig;
 import nure.pcshop.dto.image.ImageResponseDto;

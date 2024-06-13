@@ -1,10 +1,9 @@
-package nure.pcshop.service.image.impl;
+package nure.pcshop.service.image;
 
 import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.product.LaptopRequestDto;
 import nure.pcshop.model.Image;
-import nure.pcshop.repository.image.ImageRepository;
-import nure.pcshop.service.image.ImageService;
+import nure.pcshop.repository.ImageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package nure.pcshop.repository.user;
+package nure.pcshop.repository;
 
 import nure.pcshop.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

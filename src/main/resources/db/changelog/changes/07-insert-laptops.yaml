@@ -26,7 +26,7 @@ databaseChangeLog:
                   value: 12
               - column:
                   name: average_rating
-                  value: 4.8
+                  value: 4.3
               - column:
                   name: amount
                   value: 20
@@ -99,7 +99,7 @@ databaseChangeLog:
                   value: 24
               - column:
                   name: average_rating
-                  value: 4.7
+                  value: 4.6
               - column:
                   name: amount
                   value: 15
@@ -172,7 +172,7 @@ databaseChangeLog:
                   value: 24
               - column:
                   name: average_rating
-                  value: 4.6
+                  value: 4.3
               - column:
                   name: amount
                   value: 18
@@ -245,7 +245,7 @@ databaseChangeLog:
                   value: 36
               - column:
                   name: average_rating
-                  value: 4.5
+                  value: 5.0
               - column:
                   name: amount
                   value: 25
@@ -318,7 +318,7 @@ databaseChangeLog:
                   value: 24
               - column:
                   name: average_rating
-                  value: 4.8
+                  value: 4.6
               - column:
                   name: amount
                   value: 10
@@ -391,7 +391,7 @@ databaseChangeLog:
                   value: 12
               - column:
                   name: average_rating
-                  value: 4.3
+                  value: 5.0
               - column:
                   name: amount
                   value: 30
@@ -464,7 +464,7 @@ databaseChangeLog:
                   value: 24
               - column:
                   name: average_rating
-                  value: 4.5
+                  value: 4.6
               - column:
                   name: amount
                   value: 15

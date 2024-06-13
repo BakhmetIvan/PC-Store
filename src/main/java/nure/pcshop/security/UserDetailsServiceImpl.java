@@ -1,7 +1,7 @@
 package nure.pcshop.security;
 
 import lombok.RequiredArgsConstructor;
-import nure.pcshop.repository.user.UserRepository;
+import nure.pcshop.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -14,7 +14,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(
-                () -> new UsernameNotFoundException("Can't find user by email: " + email)
+                () -> new UsernameNotFoundException(
+                        "Не вдаеється знайти користувача за поштою: " + email)
         );
     }
 }
