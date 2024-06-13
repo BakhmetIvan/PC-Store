@@ -1,4 +1,4 @@
-package nure.pcshop.repository.role;
+package nure.pcshop.repository;
 
 import nure.pcshop.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,4 +1,4 @@
-package nure.pcshop.service.products.impl;
+package nure.pcshop.service.products;
 
 import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.product.LaptopPageDto;
@@ -6,17 +6,15 @@ import nure.pcshop.dto.product.LaptopRequestDto;
 import nure.pcshop.dto.product.LaptopResponseDto;
 import nure.pcshop.dto.product.LaptopWithAllFieldsDto;
 import nure.pcshop.exception.EntityNotFoundException;
-import nure.pcshop.mapper.products.LaptopMapper;
+import nure.pcshop.mapper.LaptopMapper;
 import nure.pcshop.model.Laptop;
 import nure.pcshop.repository.products.LaptopRepository;
 import nure.pcshop.service.image.ImageService;
-import nure.pcshop.service.products.ProductService;
 import nure.pcshop.service.review.ReviewService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
-
 @Service
 @RequiredArgsConstructor
 public class LaptopServiceImpl implements ProductService {
@@ -33,10 +31,9 @@ public class LaptopServiceImpl implements ProductService {
     }
 
     @Override
-    public List<LaptopResponseDto> findAll(Pageable pageable) {
-        return laptopRepository.findAll(pageable).stream()
-                .map(laptopMapper::toDto)
-                .toList();
+    public Page<LaptopResponseDto> findAll(Pageable pageable) {
+        return laptopRepository.findAll(pageable)
+                .map(laptopMapper::toDto);
     }
 
     @Override
@@ -45,15 +42,15 @@ public class LaptopServiceImpl implements ProductService {
                 () -> new EntityNotFoundException(String.format("Немає ноутбука з id: %d", id))
         );
         LaptopPageDto responseDto = laptopMapper.toDtoPage(laptop);
-        responseDto.setReviews(reviewService.findAllReviewsByProductId(id, pageable));
+        responseDto.setReviews(reviewService.findAllReviewsByProductId(id, pageable)
+                .stream().toList());
         return responseDto;
     }
 
     @Override
-    public List<LaptopResponseDto> findAllByName(String name, Pageable pageable) {
-        return laptopRepository.findAllByNameContainingIgnoreCase(name, pageable).stream()
-                .map(laptopMapper::toDto)
-                .toList();
+    public Page<LaptopResponseDto> findAllByName(String name, Pageable pageable) {
+        return laptopRepository.findAllByNameContainingIgnoreCase(name, pageable)
+                .map(laptopMapper::toDto);
     }
 
     @Override

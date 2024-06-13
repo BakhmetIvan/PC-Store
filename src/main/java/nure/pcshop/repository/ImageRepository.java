@@ -1,4 +1,4 @@
-package nure.pcshop.repository.image;
+package nure.pcshop.repository;
 
 import nure.pcshop.model.Image;
 import org.springframework.data.jpa.repository.JpaRepository;

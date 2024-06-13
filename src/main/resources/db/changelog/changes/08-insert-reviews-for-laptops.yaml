@@ -32,7 +32,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: rating
-                  value: 4.5
+                  value: 4.0
               - column:
                   name: comment
                   value: "Дуже гарний дисплей, але батарея могла б бути кращою."
@@ -86,7 +86,7 @@ databaseChangeLog:
                   value: 4
               - column:
                   name: rating
-                  value: 4.7
+                  value: 5.0
               - column:
                   name: comment
                   value: "Відмінний дизайн та продуктивність."
@@ -104,7 +104,7 @@ databaseChangeLog:
                   value: 5
               - column:
                   name: rating
-                  value: 4.2
+                  value: 4.0
               - column:
                   name: comment
                   value: "Міг би бути трохи легший."
@@ -122,7 +122,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: rating
-                  value: 4.8
+                  value: 5.0
               - column:
                   name: comment
                   value: "Чудова якість збірки та дисплей."
@@ -140,7 +140,7 @@ databaseChangeLog:
                   value: 3
               - column:
                   name: rating
-                  value: 4.6
+                  value: 4.0
               - column:
                   name: comment
                   value: "Дуже гарний екран, але трішки гучний."
@@ -158,7 +158,7 @@ databaseChangeLog:
                   value: 4
               - column:
                   name: rating
-                  value: 4.3
+                  value: 4.0
               - column:
                   name: comment
                   value: "Прекрасний ноутбук для своєї ціни."
@@ -194,7 +194,7 @@ databaseChangeLog:
                   value: 1
               - column:
                   name: rating
-                  value: 4.9
+                  value: 5.0
               - column:
                   name: comment
                   value: "Найкращий вибір для професійної роботи."
@@ -212,7 +212,7 @@ databaseChangeLog:
                   value: 3
               - column:
                   name: rating
-                  value: 4.7
+                  value: 5.0
               - column:
                   name: comment
                   value: "Дуже задоволений якістю."
@@ -249,7 +249,7 @@ databaseChangeLog:
                   value: 4
               - column:
                   name: rating
-                  value: 4.8
+                  value: 5.0
               - column:
                   name: comment
                   value: "Вражаюча продуктивність та дизайн."
@@ -267,7 +267,7 @@ databaseChangeLog:
                   value: 5
               - column:
                   name: rating
-                  value: 4.5
+                  value: 4.0
               - column:
                   name: comment
                   value: "Трішки гучний вентилятор."
@@ -304,7 +304,7 @@ databaseChangeLog:
                   value: 2
               - column:
                   name: rating
-                  value: 4.9
+                  value: 5.0
               - column:
                   name: comment
                   value: "Чудовий дисплей та продуктивність."
@@ -322,7 +322,7 @@ databaseChangeLog:
                   value: 3
               - column:
                   name: rating
-                  value: 4.8
+                  value: 5.0
               - column:
                   name: comment
                   value: "Дуже задоволений покупкою."
@@ -359,7 +359,7 @@ databaseChangeLog:
                   value: 5
               - column:
                   name: rating
-                  value: 4.7
+                  value: 5.0
               - column:
                   name: comment
                   value: "Дуже задоволений покупкою."
@@ -377,7 +377,7 @@ databaseChangeLog:
                   value: 1
               - column:
                   name: rating
-                  value: 4.5
+                  value: 4.0
               - column:
                   name: comment
                   value: "Відмінний вибір для професіоналів."

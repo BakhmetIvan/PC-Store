@@ -17,3 +17,7 @@ databaseChangeLog:
       file: db/changelog/changes/08-insert-reviews-for-laptops.yaml
   - include:
       file: db/changelog/changes/09-insert-images.yaml
+  - include:
+      file: db/changelog/changes/10-create-shoppping-cart-table.yaml
+  - include:
+      file: db/changelog/changes/11-insert-carts-for-users.yaml
