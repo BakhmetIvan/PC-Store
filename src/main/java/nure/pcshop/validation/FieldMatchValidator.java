@@ -29,7 +29,7 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
             return firstObj == null && secondObj == null
                     || firstObj != null && firstObj.equals(secondObj);
         } catch (Exception e) {
-            throw new RuntimeException("Passwords validation error", e);
+            throw new RuntimeException("Помилка валідації пароля", e);
         }
     }
 

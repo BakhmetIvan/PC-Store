@@ -1,0 +1,40 @@
+.footer {
+    background-color: rgba(255, 214, 110, 0.82);
+    padding: 30px 30px;
+}
+.footer__content {
+    display: flex;
+    justify-content: space-around;
+}
+.footer__logo {
+    height: 61px;
+}
+.footer__title{
+    font-size: 24px;
+    margin-bottom: 26px;
+}
+.footer__instas {
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.footer_insta-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.footer__insta-logo {
+    display: flex;
+}
+
+.footer__contact-list {
+    list-style: none;
+}
+
+.footer__timetable-item{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
