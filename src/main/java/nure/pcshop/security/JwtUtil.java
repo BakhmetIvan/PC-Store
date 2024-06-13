@@ -49,11 +49,7 @@ public class JwtUtil {
         try {
             return extractExpiration(token).before(new Date(System.currentTimeMillis()));
         } catch (ExpiredJwtException e) {
-<<<<<<< HEAD
-            throw new RuntimeException("Термін дії токена сплинув");
-=======
             throw new RuntimeException("Токен вже не актуальний");
->>>>>>> main
         }
     }
 
