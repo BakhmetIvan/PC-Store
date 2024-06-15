@@ -11,12 +11,26 @@ a{
   color: inherit;
 }
 
-
-
+.check_flexbox{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+.check_flexbox{
+  flex: 1 1 20%; /* Базовая ширина 20%, чтобы влезло ровно 5 товаров в строку */
+}
 
 .OOOOrders{
   display: flex;
   margin: 0 30px;
   justify-content: space-between;
   gap: 20px;
+}
+
+.account__wrapper{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  gap: 10px;
 }

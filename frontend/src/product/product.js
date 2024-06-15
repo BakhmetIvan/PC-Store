@@ -1,53 +1,92 @@
-import { Component } from "react";
+import React, { useState, useEffect } from "react";
 import './product.css';
-import legionImg from '../img/products/legion 1.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
-import { faComment } from '@fortawesome/free-regular-svg-icons';
-import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
-import { faScaleBalanced } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faCartShopping, faScaleBalanced } from '@fortawesome/free-solid-svg-icons';
+import { faComment, faHeart } from '@fortawesome/free-regular-svg-icons';
+import axios from 'axios';
 
+const Product = ({ name, image, averageRating, price, reviewsCount, productId, cartData }) => {
+    const [isAddedToCart, setIsAddedToCart] = useState(false);
+    const [cartList, setCartList] = useState(null);
+    const token = localStorage.getItem('token');
 
-class Product extends Component{
-    render(){
-        return(
-            <div className="product">
-                <div className="product__content">
-                    <a href="#" className="product__image">
-                        <img src={legionImg} alt="" />
-                    </a>
-                    <a href="#" className="product__name">Ноутбук ігровий Lenovo Legion 5 16IRX9 (83DG0092RA)</a>
-                    <div className="product__review">
+    useEffect(() => {
+        // Check if productId is in cartItems
+        if (cartData && cartData.cartItems) {
+            const foundInCart = cartData.cartItems.some(item => item.laptopId === productId);
+            setIsAddedToCart(foundInCart);
+        } else {
+            setIsAddedToCart(false); // If cartData or cartItems is not available, set isAddedToCart to false
+        }
+    }, [cartData, productId]);
+
+    const addToCart = async () => {
+        const reviewData = {
+            laptopId: productId,
+            quantity: 1
+        };
+
+        try {
+            const response = await axios.post(`http://26.69.114.65:8080/cart`, reviewData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            console.log(response.data); // Handle successful response from the backend
+            setIsAddedToCart(true);
+        } catch (error) {
+            console.error("There was an error adding to the cart:", error);
+        }
+    };
+
+    // const { image, averageRating, price, name, reviewsCount } = item;
+    const imageSrc = image && image.data ? `data:image/jpeg;base64,${image.data}` : '';
+
+    return (
+        <div className="product">
+            <div className="product__content">
+                <a href={`/product/${productId}`} className="product__image">
+                    {imageSrc && <img src={imageSrc} alt="" />}
+                </a>
+                <a href={`/product/${productId}`} className="product__name">{name}</a>
+                <div className="product__review">
+                    {reviewsCount ?
                         <ul className="product__rating">
-                            <li><FontAwesomeIcon icon={faStar} className="rating__star star-yellow"/></li>
-                            <li><FontAwesomeIcon icon={faStar} className="rating__star star-yellow"/></li>
-                            <li><FontAwesomeIcon icon={faStar} className="rating__star star-yellow"/></li>
-                            <li><FontAwesomeIcon icon={faStar} className="rating__star"/></li>
-                            <li><FontAwesomeIcon icon={faStar} className="rating__star"/></li>
+                            {[...Array(5)].map((star, index) => {
+                                const currentRate = index + 1;
+                                return (
+                                    <li key={index}>
+                                        <FontAwesomeIcon 
+                                            icon={faStar} 
+                                            className={`rating__star ${currentRate <= Math.round(averageRating) ? 'star-yellow' : ''}`} 
+                                        />
+                                    </li>
+                                );
+                            })}
                         </ul>
-                        <a href="#" className="product__comments">
-                            <div className="product__comments-icon"><FontAwesomeIcon icon={faComment} /></div>
-                            <div className="product__comments-amount">15</div>
-                        </a>
-                    </div>
-                    <div className="product__aviability product__aviability-true">В наявності</div>
-                    <div className="product__price">
-                        <div className="product__price-old">
-                            <div className="product__price-old_price">49999</div>
-                            <div className="product__price-discount">-40%</div>
-                        </div>
-                        <div className="product__price-new">39999 <span>₴</span></div>
-                    </div>
-                    <div className="product__cart-button orange"><FontAwesomeIcon icon={faCartShopping} className="cart-shopping"/></div>
-                    <div className="product__options">
-                        <div className='product__option'><FontAwesomeIcon icon={faHeart} className="product__favourite"/></div>
-                        <div className='product__option product__option-yellow'><FontAwesomeIcon icon={faScaleBalanced} className="product__scale"/></div>
-                    </div>
+                        : <div className="product__no-comments">Залишити відгук</div>
+                    }
+                    <a href={`/product/${productId}/reviews`} className="product__comments">
+                        <div className="product__comments-icon"><FontAwesomeIcon icon={faComment} /></div>
+                        <div className="product__comments-amount">{reviewsCount}</div>
+                    </a>
+                </div>
+                <div className="product__aviability product__aviability-true" onClick={() => console.log(cartList)}>В наявності</div>
+                <div className="product__price">
+                    <div className="product__price-new">{price} <span>₴</span></div>
+                </div>
+                {isAddedToCart
+                    ? <div className="product__cart-button button__in-cart"><FontAwesomeIcon icon={faCartShopping} className="cart-shopping" /></div>
+                    : <div className="product__cart-button orange" onClick={addToCart}><FontAwesomeIcon icon={faCartShopping} className="cart-shopping" /></div>
+                }
+                <div className="product__options">
+                    <div className='product__option' ><FontAwesomeIcon icon={faHeart} className="product__favourite" /></div>
+                    <div className='product__option'><FontAwesomeIcon icon={faScaleBalanced} className="product__scale" /></div>
                 </div>
             </div>
-        )
-    }
-}
+        </div>
+    );
+};
 
 export default Product;

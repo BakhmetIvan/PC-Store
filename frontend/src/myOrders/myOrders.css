@@ -1,10 +1,13 @@
-.my-orders {
+.account-page__right-block {
     background-color: #fff;
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
 }
 /* .my-orders__content {
 } */
-.my-orders__title {
+.right-block__title {
     font-size: 34px;
     font-weight: 600;
 }
@@ -23,6 +26,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.my-orders__item-type:hover{
+    border: 2px solid #FFAA2B;
+    color: #FFAA2B;
+    font-weight: 700;  
 }
 .my-orders__item-type--active {
     border: 2px solid #FFAA2B;

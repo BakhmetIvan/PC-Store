@@ -4,10 +4,12 @@
     padding: 20px 29px;
     font-size: 14px;
     border-radius: 12px;
+    /* width: 950px; */
 }
 .my-order__content {
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .my-order__id {
     margin-right: 54px;

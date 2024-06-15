@@ -1,0 +1,36 @@
+.feedback {
+    border: 1px solid #bfbfbf;
+    padding: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    width: 852px;
+}
+/* .feedback__content {
+} */
+.feedback__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+.feedback-header__name {
+    font-size: 16px;
+    font-weight: 600;
+}
+.feedback-header__date {
+    margin-left: auto;
+    margin-right: 40px;
+    width: 96px;
+}
+.feedback-header__stars {
+    display: flex;
+    list-style: none;
+}
+.feedback-header__star {
+    color: #d3d3d3;
+}
+.feedback__text {
+    line-height: 20px;
+    width: 810px;
+    text-align: justify;
+    margin-bottom: 10px;
+}
