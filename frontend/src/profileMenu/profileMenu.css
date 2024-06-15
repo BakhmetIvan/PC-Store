@@ -16,9 +16,16 @@
     padding: 20px 0;
     border-bottom: 1px solid #BFBFBF;
     cursor: pointer;
+    transition: .1s linear;
 }
 .profile-menu__item.active{
     color:#FFAA2B;
+}
+.profile-menu__item:hover{
+    color: #FFAA2B;
+}
+.profile-menu__item:hover .profile-menu__item-img-icon{
+    color: #FFAA2B;
 }
 .profile-menu__item-img-icon{    
     height: 20px;

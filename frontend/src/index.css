@@ -7,8 +7,10 @@
 }
 
 body{
+  /* background: -webkit-linear-gradient(90deg, #e6e6e6,#bfbfbf);/* Chrome 10-25, Safari 5.1-6 */                                      
   background-color: #EEEEEE;
-  max-width: 1440px;
-  margin: 0 auto;
+  /* max-width: 1440px;
+  margin: 0 auto; */
+  height: 100%;
 
 }

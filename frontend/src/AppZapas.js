@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useState, useEffect} from 'react';
+import { Component } from 'react';
 import Login from './login/login';
 import Register from './register/register';
 import Header from './header/header';
@@ -15,7 +15,6 @@ import PageNotFound from './pageNotFound/pageNotFound';
 import AuthPanel from './authPanel/authPanel';
 import MyLiked from './myLiked/myLiked';
 import ProductPage from './productPage/productPage';
-import OrderPage from './orderPage/orderPage';
 import axios from 'axios';
 
 import ProductPageReviews from './productPageReviews/productPageReviews';
@@ -31,98 +30,71 @@ import {
 import ProductPageCharact from './productPageCharact/productPageCharact';
 
 
-const App = () => {
-  // constructor(props){
-  //   super(props);
-  //   this.state = {
-  //     isLoginVisible: false,
-  //     // isloading: true,
-  //     // cities: []
-  //   }
-  // }
-  const [isLoginVisible, setLoginVisible] = useState(false);
-  const [cartData, setCartData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [overflowY, setOverlowY] = useState(true);
+class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isLoginVisible: false,
 
-  const token = localStorage.getItem('token');
-  let currentQuantity = 1;
 
-  useEffect( ()  => {
-    if(token){
-      fetch(`http://26.69.114.65:8080/cart`, {
-          method: 'GET',
-          headers: {
-              "Content-Type": 'application/json',
-              'Authorization': `Bearer ${token}`
-          },
-      })
-      .then(response => response.json())
-      .then(data => {
-          setCartData(data);
-          setIsLoading(false);
-          console.log(data);
-          console.log('apppppppppp')
-      })
-      .catch(error => {
-          setIsLoading(false);
-          console.log('Error fetching products:', error);
-      });
+
+      isloading: true,
+      cities: []
     }
-       
-  }, []);
-
-  const updateCartData = (newData) => {
-      setCartData(newData);
   }
 
+  componentDidMount(){
 
-  const cartRequest = () => {
-      setIsLoading(true);
-      const token = localStorage.getItem('token');
-      fetch(`http://26.69.114.65:8080/cart`, {
-         method: 'GET',
-         headers: {
-             "Content-Type": 'application/json',
-             'Authorization': `Bearer ${token}`
-         },
-     })
-     .then(response => response.json())
-     .then(data => {
-         setCartData(data);
-         setIsLoading(false);
-         console.log(data);
-     })
-     .catch(error => {
-         setIsLoading(false);
-         console.log('Error fetching products:', error);
-     });
+    const fetchCities = async () => {
+      try {
+        const response = await axios.post('https://api.novaposhta.ua/v2.0/json/', {
+          apiKey: 'cdbf7e42a7f76137c77e25b4d0fad374',
+          modelName: 'Address',
+          calledMethod: 'getCities',
+          methodProperties: {}
+        });
+        
+        if (response.data.success) {
+          this.setState({cities: response.data.data});
+          console.log('cities');
+          console.log(this.state.cities);
+        } else {
+          console.log('Failed to fetch cities');
+        }
+      } catch (err) {
+        console.log('nelsa')
+      } finally {
+        this.setState({isloading: false});
+        this.setState({isloading: false});
+      }
+    };
+
+    fetchCities();
   }
 
-  const onHandleCart = () => {
-    setOverlowY(!overflowY);
-    setIsCartOpen(!isCartOpen);
-    document.body.style.overflowY = overflowY ? 'hidden' : 'scroll';
-    cartRequest();
-    console.log(overflowY);
-}
-
-  const toggleLoginVisability = () =>{
-    setLoginVisible(!isLoginVisible);
+  toggleLoginVisability = () =>{
+    this.setState((state) => {
+      return{
+        isLoginVisible: !state.isLoginVisible
+      }
+    });
     document.body.style.overflow = 'hidden';
+    console.log(this.state.isLoginVisible);
   }
 
+  render(){
     return (
-      <div>  
+      <div>
+  
+  
         <Router>
-          <Header onLoginClick={toggleLoginVisability} cartData={cartData} updateCartData={updateCartData} cartRequest={cartRequest} isCartOpen={isCartOpen} isLoading={isLoading} onHandleCart={onHandleCart}/>
+          <Header onLoginClick={this.toggleLoginVisability}/>
               <Routes>
                 <Route path='/' element={
                   <div className='wrapper'>
                     <div className="container">
                       <div className="check_flexbox">
-                        <LaptopsComponent cartData={cartData} updateCartData={updateCartData}/>
+                        <LaptopsComponent/>
                       </div>
                       <Filter/>
 
@@ -142,7 +114,7 @@ const App = () => {
                     <ProductsCategory title="Відеокарти"/> */}
 
 
-                    {isLoginVisible && <AuthPanel onModalClose={toggleLoginVisability} isLoginVisible={isLoginVisible} />}
+                    {this.state.isLoginVisible && <AuthPanel onModalClose={this.toggleLoginVisability} isLoginVisible={this.state.isLoginVisible} />}
 
                     <LaptopsComponent/>
                     <Filter/>
@@ -155,7 +127,6 @@ const App = () => {
                     </div>
                     <Footer/>
                     <h1>-------------------------------------</h1>
-                    <OrderPage/>
                     <div className="OOOOrders">
                       <ProfileMenu/>
                       <MyOrders/>
@@ -182,15 +153,15 @@ const App = () => {
                 }/>
                 <Route path='/product/:id' element={
                 <>
-                  <ProductPage openModalLogin={toggleLoginVisability}/>
-                  {isLoginVisible && <AuthPanel onModalClose={toggleLoginVisability} isLoginVisible={isLoginVisible} />}
+                  <ProductPage openModalLogin={this.toggleLoginVisability}/>
+                  {this.state.isLoginVisible && <AuthPanel onModalClose={this.toggleLoginVisability} isLoginVisible={this.state.isLoginVisible} />}
                 </>
                 }/>
                 <Route path='/product/:id/characteristic' element={<ProductPageCharact/>}/>
                 <Route path='/product/:id/reviews' element={
                   <>
-                    <ProductPageReviews openModalLogin={toggleLoginVisability}/>
-                    {isLoginVisible && <AuthPanel onModalClose={toggleLoginVisability} isLoginVisible={isLoginVisible} />}
+                    <ProductPageReviews openModalLogin={this.toggleLoginVisability}/>
+                    {this.state.isLoginVisible && <AuthPanel onModalClose={this.toggleLoginVisability} isLoginVisible={this.state.isLoginVisible} />}
                   </>
                 }/>
                 <Route path='*' element={<PageNotFound/>}/>
@@ -229,6 +200,7 @@ const App = () => {
       </div>
   
     );
+  }
 }
 
 export default App;
