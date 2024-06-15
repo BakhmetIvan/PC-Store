@@ -21,3 +21,11 @@ databaseChangeLog:
       file: db/changelog/changes/10-create-shoppping-cart-table.yaml
   - include:
       file: db/changelog/changes/11-insert-carts-for-users.yaml
+  - include:
+      file: db/changelog/changes/12-create-delivery-types-table.yaml
+  - include:
+      file: db/changelog/changes/13-create-payment-types-table.yaml
+  - include:
+      file: db/changelog/changes/14-create-order-status-table.yaml
+  - include:
+      file: db/changelog/changes/15-create-orders-table.yaml

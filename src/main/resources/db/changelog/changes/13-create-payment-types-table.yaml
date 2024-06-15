@@ -1,0 +1,37 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-payment-type-table
+      author: bakhmetIvan
+      changes:
+        - createTable:
+            tableName: payment_types
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: payment
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: insert-values-to-payment-type-table
+      author: bakhmetIvan
+      changes:
+        - insert:
+            tableName: payment_types
+            columns:
+              - column:
+                  name: payment
+                  value: PAYMENT_ON_DELIVERY
+        - insert:
+            tableName: payment_types
+            columns:
+              - column:
+                  name: payment
+                  value: PAYMENT_CART

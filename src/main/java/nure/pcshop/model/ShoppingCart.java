@@ -18,7 +18,7 @@ import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,7 +36,7 @@ public class ShoppingCart {
     private User user;
     @ToString.Exclude
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<CartItem> cartItems;
+    private List<CartItem> cartItems;
     @Column(nullable = false)
     private BigDecimal total;
     @ToString.Exclude
