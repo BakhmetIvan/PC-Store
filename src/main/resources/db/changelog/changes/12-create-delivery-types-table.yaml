@@ -1,0 +1,56 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-delivery-type-table
+      author: bakhmetIvan
+      changes:
+        - createTable:
+            tableName: delivery_types
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: delivery
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: decimal(39,2)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: insert-values-to-delivery-type-table
+      author: bakhmetIvan
+      changes:
+        - insert:
+            tableName: delivery_types
+            columns:
+              - column:
+                  name: delivery
+                  value: SELF_PICKUP
+              - column:
+                  name: price
+                  value: 0.0
+        - insert:
+            tableName: delivery_types
+            columns:
+              - column:
+                  name: delivery
+                  value: POST_OFFICE
+              - column:
+                  name: price
+                  value: 199.0
+        - insert:
+            tableName: delivery_types
+            columns:
+              - column:
+                  name: delivery
+                  value: COURIER
+              - column:
+                  name: price
+                  value: 699.0

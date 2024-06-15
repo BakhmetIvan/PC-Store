@@ -14,6 +14,8 @@ import nure.pcshop.repository.shoppingcart.CartItemRepository;
 import nure.pcshop.repository.shoppingcart.ShoppingCartRepository;
 import nure.pcshop.repository.products.LaptopRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.math.BigDecimal;
 
 @Service
@@ -35,6 +37,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         cartRepository.save(shoppingCart);
     }
 
+    @Transactional
     @Override
     public ShoppingCartResponseDto saveCartItem(CartItemRequestDto requestDto, User user) {
         Laptop laptop = laptopRepository.findById(requestDto.getLaptopId()).orElseThrow(
@@ -64,6 +67,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         );
     }
 
+    @Transactional
     @Override
     public ShoppingCartResponseDto updateQuantity(Long id,
                                                   CartItemUpdateRequestDto requestDto,
@@ -88,6 +92,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return cartMapper.toDto(cart);
     }
 
+    @Transactional
     @Override
     public void deleteCartItemById(Long id, User user) {
         ShoppingCart cart = cartRepository.findShoppingCartByUser(user).orElseThrow(

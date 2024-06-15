@@ -47,18 +47,18 @@ public class ShoppingCartController {
         return cartService.saveCartItem(requestDto, user);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Update book quantity",
             description = "Updates quantity of books for the cart item")
     public ShoppingCartResponseDto updateQuantity(@PathVariable @Positive Long id,
-                                                  @RequestBody CartItemUpdateRequestDto requestDto,
+                                                  @RequestBody @Valid CartItemUpdateRequestDto requestDto,
                                                   Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return cartService.updateQuantity(id, requestDto, user);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Delete cart item",
             description = "Deletes cart item from the shopping cart")

@@ -41,25 +41,29 @@ public class LaptopController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
-    @Operation(summary = "Create a new laptop", description = "Allows an admin to create a new laptop")
+    @Operation(summary = "Create a new laptop",
+            description = "Allows an admin to create a new laptop")
     public LaptopResponseDto save(@RequestBody @Valid LaptopRequestDto requestDto) {
         return productService.save(requestDto);
     }
 
     @GetMapping("/search")
-    @Operation(summary = "Search laptops by name", description = "Finds laptops by their name")
+    @Operation(summary = "Search laptops by name",
+            description = "Finds laptops by their name")
     public Page<LaptopResponseDto> findByName(@RequestParam String name, @PageableDefault Pageable pageable) {
         return productService.findAllByName(name, pageable);
     }
 
     @GetMapping
-    @Operation(summary = "Get all laptops", description = "Retrieves a paginated list of all laptops")
+    @Operation(summary = "Get all laptops",
+            description = "Retrieves a paginated page of all laptops")
     public Page<LaptopResponseDto> findAll(@PageableDefault Pageable pageable) {
         return productService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get laptop by ID", description = "Retrieves a laptop by its ID along with its reviews")
+    @Operation(summary = "Get laptop by ID",
+            description = "Retrieves a laptop by its ID along with its reviews")
     public LaptopPageDto findById(@PathVariable @Positive Long id,
                                   @PageableDefault Pageable pageable) {
         return productService.findById(id, pageable);
@@ -67,21 +71,24 @@ public class LaptopController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("/{id}")
-    @Operation(summary = "Update a laptop", description = "Allows an admin to update a laptop's information")
+    @Operation(summary = "Update a laptop",
+            description = "Allows an admin to update a laptop's information")
     public LaptopResponseDto update(@PathVariable @Positive Long id,
                                     @Valid @RequestBody LaptopRequestDto requestDto) {
         return productService.update(id, requestDto);
     }
 
     @GetMapping("/{id}/characteristic")
-    @Operation(summary = "Get laptop characteristics by ID", description = "Retrieves all characteristics of a laptop by its ID")
+    @Operation(summary = "Get laptop characteristics by ID",
+            description = "Retrieves all characteristics of a laptop by its ID")
     public LaptopWithAllFieldsDto findCharacteristicById(@PathVariable @Positive Long id) {
         return productService.findCharacteristicById(id);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/{id}/reviews")
-    @Operation(summary = "Post a review", description = "Allows a user to post a review for a specific laptop")
+    @Operation(summary = "Post a review",
+            description = "Allows a user to post a review for a specific laptop")
     public ReviewResponseDto postReview(@PathVariable @Positive Long id,
                                         Authentication authentication,
                                         @Valid @RequestBody ReviewRequestDto requestDto) {
@@ -90,7 +97,8 @@ public class LaptopController {
     }
 
     @GetMapping("/{id}/reviews")
-    @Operation(summary = "Get all reviews for a laptop", description = "Retrieves a paginated list of all reviews for a specific laptop")
+    @Operation(summary = "Get all reviews for a laptop",
+            description = "Retrieves a paginated page of all reviews for a specific laptop")
     public Page<ReviewResponseDto> findAllReviews(@PathVariable @Positive Long id,
                                                   @PageableDefault Pageable pageable) {
         return reviewService.findAllReviewsByProductId(id, pageable);
@@ -99,7 +107,8 @@ public class LaptopController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/reviews/{id}")
-    @Operation(summary = "Delete review", description = "User can delete his review by id")
+    @Operation(summary = "Delete review",
+            description = "User can delete his review by id")
     public void deleteReviewById(Authentication authentication,
                                  @PathVariable @Positive Long id) {
         User user = (User) authentication.getPrincipal();
@@ -110,7 +119,8 @@ public class LaptopController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    @Operation(summary = "Delete a laptop by ID", description = "Allows an admin to delete a laptop by its ID")
+    @Operation(summary = "Delete a laptop by ID",
+            description = "Allows an admin to delete a laptop by its ID")
     public void deleteById(@PathVariable @Positive Long id) {
         productService.delete(id);
     }
