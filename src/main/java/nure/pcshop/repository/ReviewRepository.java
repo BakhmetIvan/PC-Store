@@ -17,4 +17,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
     Float calculateAverageRating(Long laptopId);
 
     Optional<Review> findReviewByUserAndId(User user, Long id);
+
+    Page<Review> findAllByUser(User user, Pageable pageable);
 }

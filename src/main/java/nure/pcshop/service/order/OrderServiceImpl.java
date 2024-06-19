@@ -65,7 +65,7 @@ public class OrderServiceImpl implements OrderService{
                 () -> new EntityNotFoundException(String.format(
                         "Не вдається знайти тип оплати з id = %d", requestDto.getPaymentId()))
         ));
-        order.setTotal(shoppingCart.getTotal());
+        order.setTotal(shoppingCart.getTotal().add(order.getDeliveryType().getPrice()));
         orderRepository.save(order);
         order.setOrderItems(setOrderItemsFromShoppingCart(order, shoppingCart.getCartItems()));
         shoppingCart.getCartItems().clear();
@@ -120,7 +120,7 @@ public class OrderServiceImpl implements OrderService{
             orderItem.setOrder(order);
             orderItem.setLaptop(cartItem.getLaptop());
             orderItem.setQuantity(cartItem.getQuantity());
-            orderItem.setPrice(cartItem.getLaptop().getPrice());
+            orderItem.setPrice(cartItem.getPrice());
             return orderItemRepository.save(orderItem);
         }).collect(Collectors.toList());
     }
