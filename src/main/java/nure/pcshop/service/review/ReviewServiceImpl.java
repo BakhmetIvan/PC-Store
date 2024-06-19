@@ -54,6 +54,12 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
+    public Page<ReviewResponseDto> findAllReviewsByUser(User user, Pageable pageable) {
+        return reviewRepository.findAllByUser(user, pageable)
+                .map(reviewMapper::toDto);
+    }
+
+    @Override
     public void delete(User user, Long id) {
         reviewRepository.findReviewByUserAndId(user, id).orElseThrow(
                 () -> new EntityNotFoundException("Користувач не може видаляти не свої відгуки")
