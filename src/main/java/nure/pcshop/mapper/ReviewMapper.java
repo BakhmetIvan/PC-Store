@@ -1,6 +1,7 @@
 package nure.pcshop.mapper;
 
 import nure.pcshop.config.MapperConfig;
+import nure.pcshop.dto.review.ReviewCabinetDto;
 import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.model.Review;
@@ -11,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Mapper(config = MapperConfig.class)
+@Mapper(config = MapperConfig.class, uses = ImageMapper.class)
 public interface ReviewMapper {
     Review toModel(ReviewRequestDto requestDto);
 
@@ -19,6 +20,15 @@ public interface ReviewMapper {
     @Mapping(target = "firstName", source = "user.firstName")
     @Mapping(target = "lastName", source = "user.lastName")
     ReviewResponseDto toDto(Review review);
+
+    @Mapping(target = "userId", source = "user.id")
+    @Mapping(target = "firstName", source = "user.firstName")
+    @Mapping(target = "lastName", source = "user.lastName")
+    @Mapping(target = "laptopId", source = "laptop.id")
+    @Mapping(target = "laptopName", source = "laptop.name")
+    @Mapping(target = "laptopPrice", source = "laptop.price")
+    @Mapping(source = "laptop.images", target = "laptopImage", qualifiedByName = "toSingleImageDto")
+    ReviewCabinetDto toCabinetDto(Review review);
 
     @Named("setReviewsCount")
     default int setReviewsCount(List<Review> reviews) {

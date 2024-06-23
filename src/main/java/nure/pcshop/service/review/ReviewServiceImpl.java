@@ -1,6 +1,7 @@
 package nure.pcshop.service.review;
 
 import lombok.RequiredArgsConstructor;
+import nure.pcshop.dto.review.ReviewCabinetDto;
 import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.exception.EntityNotFoundException;
@@ -54,9 +55,9 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Page<ReviewResponseDto> findAllReviewsByUser(User user, Pageable pageable) {
+    public Page<ReviewCabinetDto> findAllReviewsByUser(User user, Pageable pageable) {
         return reviewRepository.findAllByUser(user, pageable)
-                .map(reviewMapper::toDto);
+                .map(reviewMapper::toCabinetDto);
     }
 
     @Override

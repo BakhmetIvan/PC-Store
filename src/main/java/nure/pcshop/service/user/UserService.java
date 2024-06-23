@@ -1,5 +1,6 @@
 package nure.pcshop.service.user;
 
+import nure.pcshop.dto.review.ReviewCabinetDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.dto.user.UserInfoUpdateDto;
 import nure.pcshop.dto.user.UserRegistrationDto;
@@ -18,5 +19,5 @@ public interface UserService {
 
     UserResponseDto updateUserInfo(User user, UserInfoUpdateDto updateDto);
 
-    Page<ReviewResponseDto> findAllUserReviews(User user, Pageable pageable);
+    Page<ReviewCabinetDto> findAllUserReviews(User user, Pageable pageable);
 }

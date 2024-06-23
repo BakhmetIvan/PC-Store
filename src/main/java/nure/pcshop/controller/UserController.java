@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.order.OrderResponseDto;
+import nure.pcshop.dto.review.ReviewCabinetDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.dto.user.UserInfoUpdateDto;
 import nure.pcshop.dto.user.UserResponseDto;
@@ -58,8 +59,8 @@ public class UserController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @Operation(summary = "Returns user reviews",
             description = "Endpoint for obtaining all user reviews")
-    public Page<ReviewResponseDto> getUserReviews(Authentication authentication,
-                                                  @PageableDefault Pageable pageable) {
+    public Page<ReviewCabinetDto> getUserReviews(Authentication authentication,
+                                                 @PageableDefault Pageable pageable) {
         User user = (User) authentication.getPrincipal();
         return userService.findAllUserReviews(user, pageable);
     }
