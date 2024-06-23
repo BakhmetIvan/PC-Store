@@ -4,17 +4,21 @@ import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.product.LaptopPageDto;
 import nure.pcshop.dto.product.LaptopRequestDto;
 import nure.pcshop.dto.product.LaptopResponseDto;
+import nure.pcshop.dto.product.LaptopSearchParametersDto;
 import nure.pcshop.dto.product.LaptopWithAllFieldsDto;
 import nure.pcshop.exception.EntityNotFoundException;
 import nure.pcshop.mapper.LaptopMapper;
 import nure.pcshop.model.Laptop;
 import nure.pcshop.repository.products.LaptopRepository;
+import nure.pcshop.repository.products.LaptopSpecificationBuilder;
 import nure.pcshop.service.image.ImageService;
 import nure.pcshop.service.review.ReviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 @Service
 @RequiredArgsConstructor
 public class LaptopServiceImpl implements ProductService {
@@ -22,6 +26,7 @@ public class LaptopServiceImpl implements ProductService {
     private final LaptopRepository laptopRepository;
     private final LaptopMapper laptopMapper;
     private final ReviewService reviewService;
+    private final LaptopSpecificationBuilder laptopSpecificationBuilder;
 
     @Override
     public LaptopResponseDto save(LaptopRequestDto requestDto) {
@@ -70,6 +75,13 @@ public class LaptopServiceImpl implements ProductService {
         laptopMapper.updateVideoCardFromDto(requestDto, laptop);
         laptop.setImages(imageService.saveImageList(requestDto));
         return laptopMapper.toDto(laptopRepository.save(laptop));
+    }
+
+    @Override
+    public Page<LaptopResponseDto> search(LaptopSearchParametersDto searchParametersDto, Pageable pageable) {
+        Specification<Laptop> laptopSpecification = laptopSpecificationBuilder.build(searchParametersDto);
+        return laptopRepository.findAll(laptopSpecification, pageable)
+                .map(laptopMapper::toDto);
     }
 
     @Override

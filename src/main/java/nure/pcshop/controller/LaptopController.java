@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.product.LaptopPageDto;
 import nure.pcshop.dto.product.LaptopRequestDto;
 import nure.pcshop.dto.product.LaptopResponseDto;
+import nure.pcshop.dto.product.LaptopSearchParametersDto;
 import nure.pcshop.dto.product.LaptopWithAllFieldsDto;
 import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
@@ -27,7 +28,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -50,8 +50,9 @@ public class LaptopController {
     @GetMapping("/search")
     @Operation(summary = "Search laptops by name",
             description = "Finds laptops by their name")
-    public Page<LaptopResponseDto> findByName(@RequestParam String name, @PageableDefault Pageable pageable) {
-        return productService.findAllByName(name, pageable);
+    public Page<LaptopResponseDto> search(LaptopSearchParametersDto searchParametersDto,
+                                              @PageableDefault Pageable pageable) {
+        return productService.search(searchParametersDto, pageable);
     }
 
     @GetMapping

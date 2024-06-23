@@ -2,7 +2,6 @@ package nure.pcshop.dto.review;
 
 import lombok.Data;
 import java.time.LocalDateTime;
-import java.util.Map;
 
 @Data
 public class ReviewResponseDto {

@@ -21,9 +21,9 @@ import java.math.BigDecimal;
 @Service
 @RequiredArgsConstructor
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-    private final static String NO_FOUND_CART_EXCEPTION_MESSAGE =
+    private static final String NO_FOUND_CART_EXCEPTION_MESSAGE =
             "Не вдається знайти кошик за користувачем з id = %d";
-    private final static String NO_FOUND_CART_ITEM_EXCEPTION_MESSAGE =
+    private static final String NO_FOUND_CART_ITEM_EXCEPTION_MESSAGE =
             "Не вдається знайти елемент кошика з id = %d за користувачем з id = %d";
     private final ShoppingCartRepository cartRepository;
     private final LaptopRepository laptopRepository;
