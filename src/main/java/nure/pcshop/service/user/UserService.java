@@ -1,7 +1,6 @@
 package nure.pcshop.service.user;
 
 import nure.pcshop.dto.review.ReviewCabinetDto;
-import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.dto.user.UserInfoUpdateDto;
 import nure.pcshop.dto.user.UserRegistrationDto;
 import nure.pcshop.dto.user.UserResponseDto;

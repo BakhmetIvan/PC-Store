@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.order.OrderResponseDto;
 import nure.pcshop.dto.review.ReviewCabinetDto;
-import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.dto.user.UserInfoUpdateDto;
 import nure.pcshop.dto.user.UserResponseDto;
 import nure.pcshop.model.User;
