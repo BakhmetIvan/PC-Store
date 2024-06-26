@@ -13,6 +13,9 @@ public interface ImageMapper {
 
     @Named("toSingleImageDto")
     default ImageResponseDto toSingleImageDto(List<Image> images) {
-        return toDto(images.get(0));
+        if (!images.isEmpty()) {
+            return toDto(images.get(0));
+        }
+        return null;
     }
 }

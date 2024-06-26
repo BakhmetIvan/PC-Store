@@ -44,6 +44,9 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                 () -> new EntityNotFoundException("Не вдається знайти товар з id: "
                         + requestDto.getLaptopId())
         );
+        if (laptop.getAmount() < 1) {
+            throw new RuntimeException("Не можно додати в кошик товар, який закінчився");
+        }
         ShoppingCart shoppingCart = cartRepository.findShoppingCartByUser(user).orElseThrow(
                 () -> new EntityNotFoundException(String.format(
                         NO_FOUND_CART_EXCEPTION_MESSAGE, user.getId()))

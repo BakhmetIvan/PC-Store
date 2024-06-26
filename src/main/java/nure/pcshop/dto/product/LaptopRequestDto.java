@@ -17,6 +17,9 @@ public class LaptopRequestDto {
     private String description;
     @NotNull
     @Positive
+    private int amount;
+    @NotNull
+    @Positive
     private BigDecimal price;
     @Length(max = 255)
     private String brandName;

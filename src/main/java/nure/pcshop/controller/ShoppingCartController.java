@@ -29,7 +29,7 @@ public class ShoppingCartController {
     private final ShoppingCartService cartService;
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Get shopping cart",
             description = "Returns the current user's shopping cart")
     public ShoppingCartResponseDto getShoppingCart(Authentication authentication) {
@@ -38,7 +38,7 @@ public class ShoppingCartController {
     }
 
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Save cart item",
             description = "Save the cart item for the current user's shopping cart")
     public ShoppingCartResponseDto saveCartItem(@RequestBody @Valid CartItemRequestDto requestDto,
@@ -48,7 +48,7 @@ public class ShoppingCartController {
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Update book quantity",
             description = "Updates quantity of books for the cart item")
     public ShoppingCartResponseDto updateQuantity(@PathVariable @Positive Long id,
@@ -59,7 +59,7 @@ public class ShoppingCartController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Delete cart item",
             description = "Deletes cart item from the shopping cart")
     public void deleteCartItemById(@PathVariable @Positive Long id,

@@ -10,10 +10,12 @@ import nure.pcshop.dto.user.UserInfoUpdateDto;
 import nure.pcshop.dto.user.UserResponseDto;
 import nure.pcshop.model.User;
 import nure.pcshop.service.order.OrderService;
+import nure.pcshop.service.review.ReviewService;
 import nure.pcshop.service.user.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @Validated
@@ -32,9 +35,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
     private final OrderService orderService;
+    private final ReviewService reviewService;
 
     @GetMapping("/orders")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Returns all user's orders",
             description = "Returns a page of the user's orders using pagination and sorting")
     public Page<OrderResponseDto> findAllOrders(Authentication authentication,
@@ -44,7 +48,7 @@ public class UserController {
     }
 
     @GetMapping("/orders/{statusId}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Returns all user's orders by status id",
             description = "Returns a page of the user's orders by status id using pagination and sorting")
     public Page<OrderResponseDto> findAllOrdersByStatusId(Authentication authentication,
@@ -55,7 +59,7 @@ public class UserController {
     }
 
     @GetMapping("/reviews")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Returns user reviews",
             description = "Endpoint for obtaining all user reviews")
     public Page<ReviewCabinetDto> getUserReviews(Authentication authentication,
@@ -65,7 +69,7 @@ public class UserController {
     }
 
     @GetMapping("/personal-info")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Returns user info",
             description = "Endpoint for obtaining information about the user")
     public UserResponseDto getUserInfo(Authentication authentication) {
@@ -74,7 +78,7 @@ public class UserController {
     }
 
     @PutMapping("/personal-info")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Update user info",
             description = "Endpoint for updating information about the user")
     public UserResponseDto updateUserInfo(Authentication authentication,
@@ -83,8 +87,19 @@ public class UserController {
         return userService.updateUserInfo(user, updateDto);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/reviews/{id}")
+    @Operation(summary = "Delete review",
+            description = "User can delete his review by id")
+    public void deleteReviewById(Authentication authentication,
+                                 @PathVariable @Positive Long id) {
+        User user = (User) authentication.getPrincipal();
+        reviewService.delete(user, id);
+    }
+
     @DeleteMapping("/orders/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @Operation(summary = "Cancel user order",
             description = "Updates the order status to CANCELED")
     public OrderResponseDto cancelOrder(Authentication authentication,
