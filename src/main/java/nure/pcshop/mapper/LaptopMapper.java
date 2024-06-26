@@ -1,6 +1,7 @@
 package nure.pcshop.mapper;
 
 import nure.pcshop.config.MapperConfig;
+import nure.pcshop.dto.product.LaptopUpdateInfoResponseDto;
 import nure.pcshop.dto.product.LaptopPageDto;
 import nure.pcshop.dto.product.LaptopRequestDto;
 import nure.pcshop.dto.product.LaptopResponseDto;
@@ -23,6 +24,9 @@ public interface LaptopMapper {
     @Mapping(source = "reviews", target = "reviewsCount", qualifiedByName = "setReviewsCount")
     @Mapping(source = "reviews", target = "stars", qualifiedByName = "setReviewsStars")
     LaptopPageDto toDtoPage(Laptop laptop);
+
+    @Mapping(source = "images", target = "imagesFiles")
+    LaptopUpdateInfoResponseDto toFullDto(Laptop laptop);
 
     void updateVideoCardFromDto(LaptopRequestDto requestDto, @MappingTarget Laptop laptop);
 }

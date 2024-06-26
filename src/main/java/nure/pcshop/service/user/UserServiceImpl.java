@@ -1,7 +1,7 @@
 package nure.pcshop.service.user;
 
 import lombok.RequiredArgsConstructor;
-import nure.pcshop.dto.review.ReviewResponseDto;
+import nure.pcshop.dto.review.ReviewCabinetDto;
 import nure.pcshop.dto.user.UserInfoUpdateDto;
 import nure.pcshop.dto.user.UserRegistrationDto;
 import nure.pcshop.dto.user.UserResponseDto;
@@ -78,7 +78,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Page<ReviewResponseDto> findAllUserReviews(User user, Pageable pageable) {
+    public Page<ReviewCabinetDto> findAllUserReviews(User user, Pageable pageable) {
         return reviewService.findAllReviewsByUser(user, pageable);
     }
 }

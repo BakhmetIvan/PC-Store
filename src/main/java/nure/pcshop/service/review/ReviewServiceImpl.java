@@ -1,6 +1,7 @@
 package nure.pcshop.service.review;
 
 import lombok.RequiredArgsConstructor;
+import nure.pcshop.dto.review.ReviewCabinetDto;
 import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.exception.EntityNotFoundException;
@@ -35,7 +36,7 @@ public class ReviewServiceImpl implements ReviewService {
         review.setUser(userRepository.findById(userId).orElseThrow(
                 () -> new EntityNotFoundException("Такого користувача немає: " + userId)
         ));
-            review.setDate(LocalDateTime.now());
+        review.setDate(LocalDateTime.now());
         review.setLaptop(laptop);
         review = reviewRepository.save(review);
         if (laptop.getAverageRating() == null) {
@@ -54,16 +55,23 @@ public class ReviewServiceImpl implements ReviewService {
     }
 
     @Override
-    public Page<ReviewResponseDto> findAllReviewsByUser(User user, Pageable pageable) {
+    public Page<ReviewCabinetDto> findAllReviewsByUser(User user, Pageable pageable) {
         return reviewRepository.findAllByUser(user, pageable)
-                .map(reviewMapper::toDto);
+                .map(reviewMapper::toCabinetDto);
     }
 
+    @Transactional
     @Override
     public void delete(User user, Long id) {
-        reviewRepository.findReviewByUserAndId(user, id).orElseThrow(
+        Review review = reviewRepository.findReviewByUserAndId(user, id).orElseThrow(
                 () -> new EntityNotFoundException("Користувач не може видаляти не свої відгуки")
         );
+        Long laptopId = review.getLaptop().getId();
+        Laptop laptop = laptopRepository.findById(laptopId).orElseThrow(
+                () -> new EntityNotFoundException("Такого товару немає: " + laptopId)
+        );
         reviewRepository.deleteById(id);
+        laptop.setAverageRating(reviewRepository.calculateAverageRating(laptopId));
+        laptopRepository.save(laptop);
     }
 }

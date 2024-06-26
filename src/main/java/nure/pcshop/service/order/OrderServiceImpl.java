@@ -7,6 +7,7 @@ import nure.pcshop.dto.order.OrderStatusUpdateDto;
 import nure.pcshop.exception.EntityNotFoundException;
 import nure.pcshop.mapper.OrderMapper;
 import nure.pcshop.model.CartItem;
+import nure.pcshop.model.Laptop;
 import nure.pcshop.model.Order;
 import nure.pcshop.model.OrderItem;
 import nure.pcshop.model.OrderStatus;
@@ -17,7 +18,9 @@ import nure.pcshop.repository.PaymentTypeRepository;
 import nure.pcshop.repository.order.OrderItemRepository;
 import nure.pcshop.repository.order.OrderRepository;
 import nure.pcshop.repository.order.OrderStatusRepository;
+import nure.pcshop.repository.products.LaptopRepository;
 import nure.pcshop.repository.shoppingcart.ShoppingCartRepository;
+import nure.pcshop.service.products.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -37,6 +40,7 @@ public class OrderServiceImpl implements OrderService{
     private final PaymentTypeRepository paymentTypeRepository;
     private final OrderStatusRepository orderStatusRepository;
     private final OrderItemRepository orderItemRepository;
+    private final LaptopRepository laptopRepository;
 
     @Transactional
     @Override
@@ -121,6 +125,9 @@ public class OrderServiceImpl implements OrderService{
             orderItem.setLaptop(cartItem.getLaptop());
             orderItem.setQuantity(cartItem.getQuantity());
             orderItem.setPrice(cartItem.getPrice());
+            Laptop laptop = orderItem.getLaptop();
+            laptop.setAmount(laptop.getAmount() - 1);
+            laptopRepository.save(laptop);
             return orderItemRepository.save(orderItem);
         }).collect(Collectors.toList());
     }

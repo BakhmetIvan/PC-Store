@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import nure.pcshop.dto.product.LaptopPageDto;
 import nure.pcshop.dto.product.LaptopRequestDto;
 import nure.pcshop.dto.product.LaptopResponseDto;
+import nure.pcshop.dto.product.LaptopSearchParametersDto;
+import nure.pcshop.dto.product.LaptopUpdateInfoResponseDto;
 import nure.pcshop.dto.product.LaptopWithAllFieldsDto;
 import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
@@ -22,14 +24,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @Validated
 @RestController
@@ -43,15 +46,16 @@ public class LaptopController {
     @PostMapping
     @Operation(summary = "Create a new laptop",
             description = "Allows an admin to create a new laptop")
-    public LaptopResponseDto save(@RequestBody @Valid LaptopRequestDto requestDto) {
+    public LaptopResponseDto save(@ModelAttribute @Valid LaptopRequestDto requestDto) {
         return productService.save(requestDto);
     }
 
     @GetMapping("/search")
     @Operation(summary = "Search laptops by name",
             description = "Finds laptops by their name")
-    public Page<LaptopResponseDto> findByName(@RequestParam String name, @PageableDefault Pageable pageable) {
-        return productService.findAllByName(name, pageable);
+    public Page<LaptopResponseDto> search(LaptopSearchParametersDto searchParametersDto,
+                                              @PageableDefault Pageable pageable) {
+        return productService.search(searchParametersDto, pageable);
     }
 
     @GetMapping
@@ -69,12 +73,19 @@ public class LaptopController {
         return productService.findById(id, pageable);
     }
 
+    @GetMapping("/popular")
+    @Operation(summary = "Get 5 popular laptops",
+            description = "Retrieves 5 the most popular laptops")
+    public List<LaptopResponseDto> findPopularLaptops(Pageable pageable) {
+        return productService.findPopularLaptops(pageable);
+    }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     @Operation(summary = "Update a laptop",
             description = "Allows an admin to update a laptop's information")
     public LaptopResponseDto update(@PathVariable @Positive Long id,
-                                    @Valid @RequestBody LaptopRequestDto requestDto) {
+                                    @Valid @ModelAttribute LaptopRequestDto requestDto) {
         return productService.update(id, requestDto);
     }
 
@@ -83,6 +94,14 @@ public class LaptopController {
             description = "Retrieves all characteristics of a laptop by its ID")
     public LaptopWithAllFieldsDto findCharacteristicById(@PathVariable @Positive Long id) {
         return productService.findCharacteristicById(id);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/update/{id}")
+    @Operation(summary = "Get laptop info for update by ID",
+            description = "Retrieves all info of a laptop for update by its ID")
+    public LaptopUpdateInfoResponseDto getInfoForUpdate(@PathVariable @Positive Long id) {
+        return productService.findInfoForUpdateById(id);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
@@ -104,7 +123,7 @@ public class LaptopController {
         return reviewService.findAllReviewsByProductId(id, pageable);
     }
 
-    @PreAuthorize("hasRole('ROLE_USER')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/reviews/{id}")
     @Operation(summary = "Delete review",

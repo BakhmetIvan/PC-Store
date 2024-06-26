@@ -1,5 +1,6 @@
 package nure.pcshop.service.review;
 
+import nure.pcshop.dto.review.ReviewCabinetDto;
 import nure.pcshop.dto.review.ReviewRequestDto;
 import nure.pcshop.dto.review.ReviewResponseDto;
 import nure.pcshop.model.User;
@@ -11,7 +12,7 @@ public interface ReviewService {
 
     Page<ReviewResponseDto> findAllReviewsByProductId(Long productId, Pageable pageable);
 
-    Page<ReviewResponseDto> findAllReviewsByUser(User user, Pageable pageable);
+    Page<ReviewCabinetDto> findAllReviewsByUser(User user, Pageable pageable);
 
     void delete(User user, Long id);
 }
